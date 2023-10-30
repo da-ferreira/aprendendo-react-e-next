@@ -1,26 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [reverse, setReverse] = useState(false);
   const [counter, setCounter] = useState(0);
 
-  const reverseLogo = reverse ? 'reverse' : '';
-
   const handleClick = () => {
-    setReverse((prevReverse) => !prevReverse);
     setCounter((prevCounter) => prevCounter + 1);
-  }
+  };
+
+  // componentDidUpdate -> executa toda vez que o componente atualiza
+  useEffect(() => {
+    console.log('componentDidUpdate');
+  });
+
+  // componentDidMount -> executa uma vez quando o componente é montado
+  useEffect(() => {
+    console.log('componentDidMount');
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className={`App-logo ${reverseLogo}`} alt="logo" />
-
-        <button onClick={handleClick}>
-          Reverse
-        </button>
+        <button onClick={handleClick}>Click</button>
 
         <h2>Contador: {counter}</h2>
       </header>
