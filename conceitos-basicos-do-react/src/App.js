@@ -1,30 +1,33 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useReducer } from 'react';
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'REQUEST':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        data: action.data,
+      };
+    default:
+      return state;
+  }
+};
 
 function App() {
-  const [counter, setCounter] = useState(0);
-
-  const handleClick = () => {
-    setCounter((prevCounter) => prevCounter + 1);
-  };
-
-  // componentDidUpdate -> executa toda vez que o componente atualiza
-  useEffect(() => {
-    console.log('componentDidUpdate');
+  const [data, dispatch] = useReducer(reducer, {
+    loading: true,
+    data: {},
   });
-
-  // componentDidMount -> executa uma vez quando o componente é montado
-  useEffect(() => {
-    console.log('componentDidMount');
-  }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button onClick={handleClick}>Click</button>
-
-        <h2>Contador: {counter}</h2>
-      </header>
+      <div>Hello</div>
     </div>
   );
 }
