@@ -1,5 +1,6 @@
 import './App.css';
 import { useReducer } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -27,7 +28,17 @@ function App() {
 
   return (
     <div className="App">
-      <div>Hello</div>
+      <h1
+        style={{
+          marginBottom: '50px',
+        }}
+      >
+        Hello
+      </h1>
+
+      <div id="detail">
+        <Outlet />
+      </div>
     </div>
   );
 }
